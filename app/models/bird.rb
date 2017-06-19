@@ -10,4 +10,13 @@ class Bird
 
   validates_presence_of :name, :family, :continents, :added, :visible
   scope :visible, -> { where(visible: true) }
+
+  def details
+    {
+      name: name,
+      family: family,
+      continents: continents,
+      added: added.strftime('%Y-%m-%d')
+    }
+  end
 end

@@ -30,6 +30,7 @@ group :development, :test do
   gem 'byebug', platform: :mri
   gem 'rspec-rails'
   gem 'mongoid-rspec', github: 'mongoid-rspec/mongoid-rspec'
+  gem "database_cleaner"
 end
 
 group :development do
