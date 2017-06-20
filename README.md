@@ -3,7 +3,8 @@
 - Install MongoDB
 
 # Running application
-- Run command **'rails s'** in project directory
+- Make sure mongod is running
+- Run command **'rails s'** in project directory. This will start rails server on port 3000
 
 # Running test suite
 - Run command **'rspec'** in project main directory
