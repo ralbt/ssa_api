@@ -71,13 +71,12 @@ RSpec.describe Bird, type: :model do
         expect(@bird.added).to be_within(10.second).of 1.day.ago
       end
 
-      it 'reading details' do
+      it 'should save unique continents' do
+        continents = ['Asia', 'Asia']
+        @bird.continents = continents
         @bird.save
-        bird_details = @bird.details
-        expect(bird_details[:name]).to eq(@name)
-        expect(bird_details[:family]).to eq(@family)
-        expect(bird_details[:continents]).to eq(@continents)
-        expect(bird_details[:added]).to eq(Time.zone.now.strftime('%Y-%m-%d'))
+        @bird.reload
+        expect(@bird.continents).to eq(continents.uniq)
       end
     end
   end

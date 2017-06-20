@@ -1,6 +1,7 @@
 class Bird
   include Mongoid::Document
   field :name, type: String
+  ## To avoid redundancy and for faster filtering 'family' and 'continents' can be moved to separate documents
   field :family, type: String
   field :continents, type: Array, default: Array.new
   field :added, type: Time, default: Time.zone.now
@@ -10,13 +11,10 @@ class Bird
 
   validates_presence_of :name, :family, :continents, :added, :visible
   scope :visible, -> { where(visible: true) }
+  before_create :filter_duplicate_continents
 
-  def details
-    {
-      name: name,
-      family: family,
-      continents: continents,
-      added: added.strftime('%Y-%m-%d')
-    }
-  end
+  private
+    def filter_duplicate_continents
+      self.continents = continents.uniq
+    end
 end

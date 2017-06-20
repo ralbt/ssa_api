@@ -1,8 +1,8 @@
 class BirdsController < ApplicationController
   before_action :set_bird, only: [:show, :destroy]
   def index
-    @birds = Bird.visible.all
-    json_response(@birds.map(&:details), :ok)
+    @birds = Bird.visible.all  # Paginate when records are huge
+    json_response(BirdsResponse.all(@birds), :ok)
   end
 
   def create

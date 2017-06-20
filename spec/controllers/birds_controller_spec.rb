@@ -34,6 +34,7 @@ RSpec.describe BirdsController, type: :controller do
       resp = JSON.parse(response.body)
       expect(resp).not_to be_empty
       expect(resp.count).to eq(1)
+      expect(resp[0]['id']).to eq(bird.id.to_s)
       expect(resp[0]['name']).to eq(name)
       expect(resp[0]['family']).to eq(family)
       expect(resp[0]['continents']).to eq(continents)
